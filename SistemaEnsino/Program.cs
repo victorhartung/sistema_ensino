@@ -171,7 +171,7 @@ do
                                 case "2":
                                     alunoDetalhe.Cursos.ForEach(c => Console.WriteLine($"{c.Nome}    Id: {c.Id}"));
 
-                                    Console.WriteLine("Digite o ID do curso que deseja inscrever o aluno:");
+                                    Console.WriteLine("Digite o ID do curso para removê-lo dos cursos do aluno:");
                                     var idCursoAluno = int.Parse(Console.ReadLine() ?? string.Empty);
                                     
                                     var removido = alunoDetalhe.Remover(idCursoAluno);
@@ -239,6 +239,8 @@ do
                         if (professor != null)
                         {
                             professores.Remove(professor);
+                            cursos.Where(curso => curso.Professor.Id.Equals(id))
+                                .ToList().ForEach(a => a.Remover());
                             Console.WriteLine("Professor removido com sucesso!\n");
                         }
                         else
@@ -339,6 +341,73 @@ do
                             var listaDetalhes = cursoDetalhe.Listar();
                             Console.WriteLine($"Alunos: {(listaDetalhes != string.Empty ?  "\n" + listaDetalhes 
                                 : "A sala ainda está vazia!\n")}");
+                            
+                            Console.WriteLine("1 - Inscrever algum aluno no curso");
+                            Console.WriteLine("2 - Remover aluno do curso");
+                            Console.WriteLine("3 - Alocar professor no curso");
+                            Console.WriteLine("4 - Remover professor do curso");
+                            Console.WriteLine("? - Voltar");
+                            
+                            var opcaoCursoAluno = Console.ReadLine();
+                            
+                            switch (opcaoCursoAluno)
+                            {
+                                case "1":
+                                    alunos.ForEach(a => Console.WriteLine($"{a.Nome}    Id: {a.Id}"));
+
+                                    Console.WriteLine("\nDigite o ID do aluno que deseja inscrever no curso:");
+                                    var idAluno = int.Parse(Console.ReadLine() ?? string.Empty);
+
+                                    var aluno = alunos.Find(a => a.Id.Equals(idAluno));
+
+                                    if (aluno != null)
+                                    {
+                                        var adicionado = cursoDetalhe.Adicionar(aluno);
+                                        Console.WriteLine($"{(adicionado ? "Aluno inscrito no curso\n" 
+                                            : "Aluno já está fazendo o curso\n")}");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Aluno não encontrado!\n");
+                                    }
+                                    break;
+                                case "2":
+                                    cursoDetalhe.Alunos.ForEach(a => Console.WriteLine($"{a.Nome}    Id: {a.Id}"));
+
+                                    Console.WriteLine("Digite o ID do aluno para removê-lo do curso:");
+                                    var idAlunoCurso = int.Parse(Console.ReadLine() ?? string.Empty);
+                                    
+                                    var removido = cursoDetalhe.Remover(idAlunoCurso);
+
+                                    Console.WriteLine($"{(removido ? "Aluno removido do curso\n" 
+                                        : "Não foi possível remover aluno do curso\n")}");
+                                    break;
+                                case "3":
+                                    professores.ForEach(p => Console.WriteLine($"{p.Nome}    Id: {p.Id}"));
+
+                                    Console.WriteLine("\nDigite o ID do professor que deseja alocar no curso:");
+                                    var idProfessor = int.Parse(Console.ReadLine() ?? string.Empty);
+
+                                    var professor = professores.Find(p => p.Id.Equals(idProfessor));
+
+                                    if (professor != null)
+                                    {
+                                        cursoDetalhe.Adicionar(professor);
+                                        Console.WriteLine("Professor alocado no curso\n");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Professor não encontrado!\n");
+                                    }
+                                    break;
+                                case "4":
+                                    Console.WriteLine("Professor removido do curso\n");
+                                    cursoDetalhe.Remover();
+                                    break;
+                                default:
+                                    Console.WriteLine("Voltando...\n");
+                                    break;
+                            } 
                         }
                         else
                         {

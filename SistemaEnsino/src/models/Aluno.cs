@@ -4,7 +4,7 @@ namespace SistemaEnsino.models;
 
 public class Aluno : Pessoa, ICrud<Curso>
 {
-    public string Matricula { get; set; }
+    public string Matricula { get; }
     public List<Curso> Cursos { get; }
 
     public Aluno(string? nome, string? email, int idade, string matricula) : base(nome, email, idade)
@@ -46,6 +46,11 @@ public class Aluno : Pessoa, ICrud<Curso>
     public bool Remover(int id)
     {
         var curso = Pegar(id);
-        return curso != null && Cursos.Remove(curso);
+        
+        if (curso == null) return false;
+        
+        Cursos.Remove(curso);
+        curso.Remover(Id);
+        return true;
     }
 }

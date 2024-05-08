@@ -5,9 +5,9 @@ namespace SistemaEnsino.models;
 public class Curso : ICrud<Aluno>
 {
     private static int _contador;
-    public int Id { get; private set; } 
+    public int Id { get; } 
     public string? Nome { get; private set; }
-    private List<Aluno> Alunos { get; }
+    public List<Aluno> Alunos { get; }
     public Professor Professor { get; private set; }
 
     public Curso(string? nome)
@@ -55,7 +55,12 @@ public class Curso : ICrud<Aluno>
     public bool Remover(int id)
     {
         var aluno = Pegar(id);
-        return aluno != null && Alunos.Remove(aluno);
+        
+        if (aluno == null) return false;
+        
+        Alunos.Remove(aluno);
+        aluno.Remover(Id);
+        return true;
     }
     
     public void Remover()
