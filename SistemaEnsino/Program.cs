@@ -1,25 +1,25 @@
 ﻿using SistemaEnsino.models;
 
-Console.WriteLine("Bem-Vindo ao Menu da Instituição!");
+Console.WriteLine("Bem-Vindo ao Sistema de Ensino!!!");
 
 var alunos = new List<Aluno>
 {
-    new("Pablo", "pablo@email.com", 20, "1234567890"),
-    new("Pedro", "pedro@email.com", 19, "1234567891"),
-    new("Paulo", "paulo@email.com", 21, "1234567892")
+    new("Paulo", "paulo@email.com", 20, "1234567893"),
+    new("Pedro", "pedro@email.com", 19, "1234567896"),
+    new("Victor", "victor@email.com", 21, "1234567890")
 };
 
 var cursos = new List<Curso>
 {
-    new("Curso de C#"),
-    new("Curso de Java"),
-    new("Curso de Python")
+    new("C#"),
+    new("Java"),
+    new("Python")
 };
 
 var professores = new List<Professor>
 {
     new("Rosen", "rosen@email.com", 30),
-    new("Venício", "venicio@hotmail.com", 200),
+    new("Venício", "venicio@hotmail.com", 199),
     new("Rafael", "rafael@outlook.com", 42)
 };
 
@@ -58,10 +58,10 @@ do
             {
                 alunos.ForEach(aluno => Console.WriteLine($"{aluno.Nome}    Id: {aluno.Id}"));
             
-                Console.WriteLine("\n1 - Adicionar Aluno");
-                Console.WriteLine("2 - Atualizar Aluno");
-                Console.WriteLine("3 - Remover Aluno");
-                Console.WriteLine("4 - Exibir detalhe de Aluno");
+                Console.WriteLine("\n1 - Adicionar");
+                Console.WriteLine("2 - Atualizar");
+                Console.WriteLine("3 - Remover");
+                Console.WriteLine("4 - Exibir Detalhes");
                 Console.WriteLine("9 - Voltar");
                 
                 var opcaoAluno = Console.ReadLine();
@@ -69,23 +69,19 @@ do
                 switch (opcaoAluno)
                 {
                     case "1":
-                        Console.WriteLine("Adicionar Aluno");
-                        
-                        Console.WriteLine("Digite o nome:");
+                        Console.WriteLine("\nDigite o nome do aluno:");
                         var nome = Console.ReadLine();
-                        Console.WriteLine("Digite o email:");
+                        Console.WriteLine("Email:");
                         var email = Console.ReadLine();
-                        Console.WriteLine("Digite a idade:");
+                        Console.WriteLine("Idade:");
                         var idade = int.Parse(Console.ReadLine() ?? string.Empty);
-                        Console.WriteLine("Digite a matrícula:");
+                        Console.WriteLine("Matrícula:");
                         var matricula = Console.ReadLine();
                         
                         alunos.Add(new Aluno(nome, email, idade, matricula));
-                        Console.WriteLine("Aluno cadastrado com sucesso!\n");
+                        Console.WriteLine($"{nome} cadastrado(a) com sucesso!\n");
                         break;
                     case "2":
-                        Console.WriteLine("Atualizar Aluno");
-                        
                         Console.WriteLine("Digite o ID do aluno que deseja atualizar:");
                         var id = int.Parse(Console.ReadLine() ?? string.Empty);
                         
@@ -96,7 +92,7 @@ do
                             Console.WriteLine("Digite o novo nome:");
                             var novoNome = Console.ReadLine();
                             aluno.Atualizar(novoNome);
-                            Console.WriteLine("Aluno atualizado com sucesso!\n");
+                            Console.WriteLine($"{aluno.Nome} atualizado(a) com sucesso!\n");
                         }
                         else
                         {
@@ -104,8 +100,6 @@ do
                         }
                         break;
                     case "3":
-                        Console.WriteLine("Remover Aluno");
-                        
                         Console.WriteLine("Digite o ID do aluno que deseja remover:");
                         var idRemove = int.Parse(Console.ReadLine() ?? string.Empty);
                         
@@ -115,7 +109,7 @@ do
                         {
                             alunos.Remove(alunoRemove);
                             cursos.ForEach(curso => curso.Remover(alunoRemove.Id));
-                            Console.WriteLine("Aluno removido com sucesso!\n");
+                            Console.WriteLine($"{alunoRemove.Nome} removido(a) com sucesso!\n");
                         }
                         else
                         {
@@ -123,8 +117,6 @@ do
                         }
                         break;
                     case "4":
-                        Console.WriteLine("Exibir detalhe de Aluno");
-                        
                         Console.WriteLine("Digite o ID do aluno que deseja saber mais:");
                         
                         var idDetalhe = int.Parse(Console.ReadLine() ?? string.Empty);
@@ -141,9 +133,9 @@ do
                             Console.WriteLine($"Cursos: {(listaDetalhe != string.Empty ?  "\n" + listaDetalhe 
                                 : "Aluno está sem cursos!\n")}");
 
-                            Console.WriteLine("1 - Inscrever aluno em algum curso");
-                            Console.WriteLine("2 - Remover aluno do curso");
-                            Console.WriteLine("? - Voltar");
+                            Console.WriteLine("1 - Inscrever em algum curso:");
+                            Console.WriteLine("2 - Remover de um curso:");
+                            Console.WriteLine("Outro - Voltar");
                             
                             var opcaoAlunoCurso = Console.ReadLine();
                             
@@ -160,8 +152,9 @@ do
                                     if (curso != null)
                                     {
                                         var adicionado = alunoDetalhe.Adicionar(curso);
-                                        Console.WriteLine($"{(adicionado ? "Aluno inscrito no curso\n" 
-                                            : "Aluno já está fazendo o curso\n")}");
+                                        Console.WriteLine($"{(adicionado ? $"{alunoDetalhe.Nome} acabou de realizar" +
+                                                                           $" a inscrição no curso de {curso.Nome}!\n" 
+                                            : $"{alunoDetalhe.Nome} já está fazendo o curso de {curso.Nome}\n")}");
                                     }
                                     else
                                     {
@@ -176,7 +169,7 @@ do
                                     
                                     var removido = alunoDetalhe.Remover(idCursoAluno);
 
-                                    Console.WriteLine($"{(removido ? "Aluno removido do curso\n" 
+                                    Console.WriteLine($"{(removido ? $"{alunoDetalhe.Nome} foi removido(a) do curso\n" 
                                         : "Não foi possível remover aluno do curso\n")}");
                                     break;
                                 default:
@@ -209,8 +202,8 @@ do
             {
                 professores.ForEach(professor => Console.WriteLine($"{professor.Nome}    Id: {professor.Id}"));
                 
-                Console.WriteLine("\n1 - Adicionar Professor");
-                Console.WriteLine("2 - Remover Professor");
+                Console.WriteLine("\n1 - Adicionar");
+                Console.WriteLine("2 - Remover");
                 Console.WriteLine("9 - Voltar");
                 
                 var opcaoProfessor = Console.ReadLine();
@@ -226,11 +219,9 @@ do
                         var idade = int.Parse(Console.ReadLine() ?? string.Empty);
                         
                         professores.Add(new Professor(nome, email, idade));
-                        Console.WriteLine("Professor cadastrado com sucesso!\n");
+                        Console.WriteLine($"{nome} cadastrado(a) com sucesso!\n");
                         break;
                     case "2":
-                        Console.WriteLine("Remover Professor");
-                        
                         Console.WriteLine("Digite o ID do professor que deseja remover:");
                         var id = int.Parse(Console.ReadLine() ?? string.Empty);
                         
@@ -241,7 +232,7 @@ do
                             professores.Remove(professor);
                             cursos.Where(curso => curso.Professor.Id.Equals(id))
                                 .ToList().ForEach(a => a.Remover());
-                            Console.WriteLine("Professor removido com sucesso!\n");
+                            Console.WriteLine($"{professor.Nome} removido(a) com sucesso!\n");
                         }
                         else
                         {
@@ -267,10 +258,10 @@ do
             {
                 cursos.ForEach(curso => Console.WriteLine($"{curso.Nome}    Id: {curso.Id}"));
             
-                Console.WriteLine("\n1 - Adicionar Curso");
-                Console.WriteLine("2 - Atualizar Curso");
-                Console.WriteLine("3 - Remover Curso");
-                Console.WriteLine("4 - Exibir detalhes do Curso");
+                Console.WriteLine("\n1 - Adicionar");
+                Console.WriteLine("2 - Atualizar");
+                Console.WriteLine("3 - Remover");
+                Console.WriteLine("4 - Exibir Detalhes");
                 Console.WriteLine("9 - Voltar");
                 
                 var opcaoCurso = Console.ReadLine();
@@ -278,17 +269,13 @@ do
                 switch (opcaoCurso)
                 {
                     case "1":
-                        Console.WriteLine("Adicionar Curso");
-                        
                         Console.WriteLine("Digite o nome:");
                         var nome = Console.ReadLine();
                         
                         cursos.Add(new Curso(nome));
-                        Console.WriteLine("Curso cadastrado com sucesso!\n");
+                        Console.WriteLine($"Curso de {nome} cadastrado com sucesso!\n");
                         break;
                     case "2":
-                        Console.WriteLine("Atualizar Curso");
-                        
                         Console.WriteLine("Digite o ID do curso que deseja atualizar:");
                         var id = int.Parse(Console.ReadLine() ?? string.Empty);
                         
@@ -299,7 +286,7 @@ do
                             Console.WriteLine("Digite o novo nome:");
                             var novoNome = Console.ReadLine();
                             curso.Atualizar(novoNome);
-                            Console.WriteLine("Curso atualizado com sucesso!\n");
+                            Console.WriteLine($"Curso de {novoNome} atualizado com sucesso!\n");
                         }
                         else
                         {
@@ -307,8 +294,6 @@ do
                         }
                         break;
                     case "3":
-                        Console.WriteLine("Remover Curso");
-                        
                         Console.WriteLine("Digite o ID do curso que deseja remover:");
                         var idRemove = int.Parse(Console.ReadLine() ?? string.Empty);
                         
@@ -318,7 +303,7 @@ do
                         {
                             cursos.Remove(cursoRemove);
                             alunos.ForEach(aluno => aluno.Remover(cursoRemove.Id));
-                            Console.WriteLine("Curso removido com sucesso!\n");
+                            Console.WriteLine($"Curso de {cursoRemove.Nome} removido com sucesso!\n");
                         }
                         else
                         {
@@ -326,9 +311,7 @@ do
                         }
                         break;
                     case "4":
-                        Console.WriteLine("Exibir detalhes do Curso");
-                        
-                        Console.WriteLine("Digite o ID do curso que deseja saber mais:");
+                        Console.WriteLine("Digite o ID do curso para saber um pouco mais:");
                         
                         var idDetalhe = int.Parse(Console.ReadLine() ?? string.Empty);
                         
@@ -363,8 +346,9 @@ do
                                     if (aluno != null)
                                     {
                                         var adicionado = cursoDetalhe.Adicionar(aluno);
-                                        Console.WriteLine($"{(adicionado ? "Aluno inscrito no curso\n" 
-                                            : "Aluno já está fazendo o curso\n")}");
+                                        Console.WriteLine($"{(adicionado ? 
+                                            $"{aluno.Nome} acabou de se inscrever no curso de {cursoDetalhe.Nome}!\n" 
+                                            : $"{aluno.Nome} já está fazendo o curso de {cursoDetalhe.Nome}\n")}");
                                     }
                                     else
                                     {
@@ -393,7 +377,8 @@ do
                                     if (professor != null)
                                     {
                                         cursoDetalhe.Adicionar(professor);
-                                        Console.WriteLine("Professor alocado no curso\n");
+                                        Console.WriteLine($"Professor {professor.Nome} alocado no curso de " +
+                                                          $"{cursoDetalhe.Nome}\n");
                                     }
                                     else
                                     {
@@ -401,7 +386,8 @@ do
                                     }
                                     break;
                                 case "4":
-                                    Console.WriteLine("Professor removido do curso\n");
+                                    Console.WriteLine($"Professor {cursoDetalhe.Professor.Nome} removido do curso " +
+                                                      $"de {cursoDetalhe.Nome}\n");
                                     cursoDetalhe.Remover();
                                     break;
                                 default:
