@@ -5,7 +5,7 @@ namespace SistemaEnsino.models;
 public class Aluno : Pessoa, ICrud<Curso>
 {
     public string Matricula { get; }
-    public List<Curso> Cursos { get; }
+    public List<Curso> Cursos { get; } //relacionamento de curso com aluno
 
     public Aluno(string? nome, string? email, int idade, string matricula) : base(nome, email, idade)
     {

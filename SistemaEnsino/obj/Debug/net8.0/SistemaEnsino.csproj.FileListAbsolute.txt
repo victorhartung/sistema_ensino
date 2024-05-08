@@ -1,0 +1,15 @@
+C:\Users\victor.hartung\Source\Repos\victorhartung\sistema_ensino\SistemaEnsino\bin\Debug\net8.0\SistemaEnsino.exe
+C:\Users\victor.hartung\Source\Repos\victorhartung\sistema_ensino\SistemaEnsino\bin\Debug\net8.0\SistemaEnsino.deps.json
+C:\Users\victor.hartung\Source\Repos\victorhartung\sistema_ensino\SistemaEnsino\bin\Debug\net8.0\SistemaEnsino.runtimeconfig.json
+C:\Users\victor.hartung\Source\Repos\victorhartung\sistema_ensino\SistemaEnsino\bin\Debug\net8.0\SistemaEnsino.dll
+C:\Users\victor.hartung\Source\Repos\victorhartung\sistema_ensino\SistemaEnsino\bin\Debug\net8.0\SistemaEnsino.pdb
+C:\Users\victor.hartung\Source\Repos\victorhartung\sistema_ensino\SistemaEnsino\obj\Debug\net8.0\SistemaEnsino.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\victor.hartung\Source\Repos\victorhartung\sistema_ensino\SistemaEnsino\obj\Debug\net8.0\SistemaEnsino.AssemblyInfoInputs.cache
+C:\Users\victor.hartung\Source\Repos\victorhartung\sistema_ensino\SistemaEnsino\obj\Debug\net8.0\SistemaEnsino.AssemblyInfo.cs
+C:\Users\victor.hartung\Source\Repos\victorhartung\sistema_ensino\SistemaEnsino\obj\Debug\net8.0\SistemaEnsino.csproj.CoreCompileInputs.cache
+C:\Users\victor.hartung\Source\Repos\victorhartung\sistema_ensino\SistemaEnsino\obj\Debug\net8.0\SistemaEnsino.sourcelink.json
+C:\Users\victor.hartung\Source\Repos\victorhartung\sistema_ensino\SistemaEnsino\obj\Debug\net8.0\SistemaEnsino.dll
+C:\Users\victor.hartung\Source\Repos\victorhartung\sistema_ensino\SistemaEnsino\obj\Debug\net8.0\refint\SistemaEnsino.dll
+C:\Users\victor.hartung\Source\Repos\victorhartung\sistema_ensino\SistemaEnsino\obj\Debug\net8.0\SistemaEnsino.pdb
+C:\Users\victor.hartung\Source\Repos\victorhartung\sistema_ensino\SistemaEnsino\obj\Debug\net8.0\SistemaEnsino.genruntimeconfig.cache
+C:\Users\victor.hartung\Source\Repos\victorhartung\sistema_ensino\SistemaEnsino\obj\Debug\net8.0\ref\SistemaEnsino.dll
