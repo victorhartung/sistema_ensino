@@ -4,7 +4,7 @@ namespace SistemaEnsino.models;
 
 public class Curso : ICrud<Aluno>
 {
-    private static int _contador;
+    private static int _contador = 1;
     public int Id { get; } 
     public string? Nome { get; private set; }
     public List<Aluno> Alunos { get; }

@@ -2,7 +2,7 @@ namespace SistemaEnsino.models;
 
 public abstract class Pessoa
 {
-	private static int _contador;
+	private static int _contador = 1;
 	public int Id { get; private set; }
     public string? Nome { get; protected set; }
     public string? Email { get; protected set; }
